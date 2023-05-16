@@ -1,13 +1,11 @@
-#include <iostream>
-#include <cmath>
 #include <ccomplex>
+#include <cmath>
+#include <iostream>
 #include <vector>
 
-const double PI = acos(-1);
-using std::cout;
 
 std::complex<double> W(int n, int p) {
-    return {cos(-2 * PI * p / n), sin(-2 * PI * p / n)};
+    return {cos(-2 * M_PI * p / n), sin(-2 * M_PI * p / n)};
 }
 
 void fft_square(int n, std::vector<std::vector<std::complex<double>>> &ar) {
@@ -23,6 +21,7 @@ void fft_square(int n, std::vector<std::vector<std::complex<double>>> &ar) {
         ar[1][0] = f10; ar[1][1] = f11;
         return;
     }
+
     std::vector<std::vector<std::complex<double>>> tmp[4];
     for (auto &v : tmp) {
         v = std::vector<std::vector<std::complex<double>>>(n / 2,std::vector<std::complex<double>>(n / 2));
@@ -57,13 +56,13 @@ void fft_cooley_tukey(int n, int m, std::vector<std::vector<std::complex<double>
     }
 
     std::vector<std::vector<std::complex<double>>> tmp[2];
-    tmp[0] = std::vector<std::vector<std::complex<double>>>(n, std::vector<std::complex<double>>(m / 2));
-    tmp[1] = tmp[0];
+    tmp[0] = tmp[1] = std::vector<std::vector<std::complex<double>>>(n, std::vector<std::complex<double>>(m / 2));
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
             tmp[j & 1][i][j / 2] = ar[i][j];
         }
     }
+
     fft_cooley_tukey(n, m / 2, tmp[0]);
     fft_cooley_tukey(n, m / 2, tmp[1]);
 
