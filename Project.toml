@@ -1,0 +1,4 @@
+name = "Fourier"
+uuid = "bf21da63-f147-4b18-abc7-d18735c25c8a"
+authors = ["Ivan Morozov <m0r0zk01@yandex.ru>", "Maksim Petlyak <???@???.???>"]
+version = "0.1.0"
