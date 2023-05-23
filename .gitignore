@@ -1,1 +1,3 @@
 .vscode
+.DS_store
+*.h5

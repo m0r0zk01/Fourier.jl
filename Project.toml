@@ -2,3 +2,8 @@ name = "Fourier"
 uuid = "bf21da63-f147-4b18-abc7-d18735c25c8a"
 authors = ["Ivan Morozov <m0r0zk01@yandex.ru>", "Maksim Petlyak <???@???.???>"]
 version = "0.1.0"
+
+[deps]
+HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
