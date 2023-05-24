@@ -1,4 +1,4 @@
-module Fourier
+module Fourier2
 
 export fft_pow2, fft2_pow2
 
@@ -26,12 +26,15 @@ Computes Fast Fourier Transform of 2-d array `arr`
 `arr` length must be power of 2
 """
 function fft2_pow2(arr; algorithm="default")
-    ndims(arr) == 2 || error("arr is not a 2d array")
+    typeof(arr) <: AbstractArray || error("got non-array")
+    ndims(arr) == 2              || error("arr is not a 2d array")
 
     if algorithm == "default"
         return _fft2_pow2_default(arr)
     elseif algorithm == "cooley"
         return _fft2_pow2_cooley(arr)
+    else
+        error("Unknown algorithm name: $algorithm")
     end
 end
 

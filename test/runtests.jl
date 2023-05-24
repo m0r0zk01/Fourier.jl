@@ -1,4 +1,4 @@
-using Fourier
+using Fourier2
 using HDF5
 using PyCall
 using Test
