@@ -17,8 +17,6 @@ function test_fft1_small()
         arr = read_arr("small_1d_$i")
         arr_copy = copy(arr)
 
-        @info i, arr, size(arr), typeof(arr)
-
         res_np = np.fft.fft(arr)
         res_my = fft_pow2(arr)
 
@@ -97,11 +95,29 @@ function test_fft2_default_large()
 end
 
 function test_fft2_cooley_small()
+    for i in 1:4
+        arr = read_arr("small_2d_$i")
+        arr_copy = copy(arr)
 
+        res_np = np.fft.fft2(arr_copy)
+        res_my = fft2_pow2(arr, algorithm="cooley")
+
+        @test isequal(arr_copy, arr)
+        @test isapprox(res_np, res_my)
+    end
 end
 
 function test_fft2_cooley_large()
+    for i in 1:2
+        arr = read_arr("large_2d_$i")
+        arr_copy = copy(arr)
 
+        res_np = np.fft.fft2(arr_copy)
+        res_my = fft2_pow2(arr, algorithm="cooley")
+
+        @test isequal(arr_copy, arr)
+        @test isapprox(res_np, res_my)
+    end
 end
 
 @testset "Fourier.jl" begin
