@@ -39,7 +39,7 @@ function test_fft1_large()
 end
 
 function test_fft1_axis_small()
-    for i in 1:4
+    for i in 1:5
         arr = read_arr("small_5d_$i")
         arr_copy = copy(arr)
 
@@ -69,7 +69,7 @@ function test_fft1_axis_large()
 end
 
 function test_fft2_default_small()
-    for i in 1:4
+    for i in 1:8
         arr = read_arr("small_2d_$i")
         arr_copy = copy(arr)
 
@@ -82,7 +82,7 @@ function test_fft2_default_small()
 end
 
 function test_fft2_default_large()
-    for i in 1:2
+    for i in 1:4
         arr = read_arr("large_2d_$i")
         arr_copy = copy(arr)
 
@@ -95,7 +95,7 @@ function test_fft2_default_large()
 end
 
 function test_fft2_cooley_small()
-    for i in 1:4
+    for i in 1:8
         arr = read_arr("small_2d_$i")
         arr_copy = copy(arr)
 
@@ -108,7 +108,7 @@ function test_fft2_cooley_small()
 end
 
 function test_fft2_cooley_large()
-    for i in 1:2
+    for i in 1:4
         arr = read_arr("large_2d_$i")
         arr_copy = copy(arr)
 
