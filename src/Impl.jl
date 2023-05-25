@@ -188,10 +188,8 @@ function _fft2_pow2_cooley_square!(arr::T2)
 
     n = size(arr, 1)
 
-    _bit_reverse_permutation_2d!(arr)
-    arr_perm = permutedims(arr, (2, 1))
-    _bit_reverse_permutation_2d!(arr_perm)
-    permutedims!(arr, arr_perm, (2, 1))
+    _bit_reverse_permutation_2d!(arr, 1)
+    _bit_reverse_permutation_2d!(arr, 2)
 
     if n >= 2
         @fastmath @inbounds @simd for block2 in 0:2:n-1
@@ -264,27 +262,9 @@ end
 More rows
 """
 function _fft2_pow2_cooley_rect2!(arr::Matrix{ComplexF64})
-    m, n = size(arr)
-
-    levels = Int(intlen(m ÷ n))
-    _bit_reverse_permutation_2d!(arr, levels, 2)
-    for i in 1:n:m
-        @views _fft2_pow2_cooley_square!(arr[i:i+n-1, :])
-    end
-
-    len = 2 * n
-    while len <= m
-        half = len >> 1
-        roots = transpose(cispi.(-2 * (0:half-1) / len))
-        for block in 0:len:m-1
-            for i in 1:half
-                @. @views arr[block + i + half, :] *= roots[i]
-                @. @views arr[block + i, :] += arr[block + i + half, :]
-                @. @views arr[block + i + half, :] = arr[block + i, :] - 2 * arr[block + i + half, :]
-            end
-        end
-        len <<= 1
-    end
+    arr_perm = permutedims(arr, (2, 1))
+    _fft2_pow2_cooley_rect1!(arr_perm)
+    permutedims!(arr, arr_perm, (2, 1))
 end
 
 function _fft2_pow2_default(arr::Matrix)

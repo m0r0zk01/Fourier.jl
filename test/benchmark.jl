@@ -35,11 +35,17 @@ end
 bench1d(16384)
 bench1d(2^25)
 
+bench2d(128, 128)
 bench2d(512, 512)
 bench2d(1024, 1024)
 bench2d(2048, 2048)
 bench2d(4096, 4096)
 bench2d(8192, 8192)
+bench2d(16384, 16384)
 
+bench2d(128, 16384)
 bench2d(512, 16384)
+bench2d(4096, 16384)
+bench2d(16384, 128)
 bench2d(16384, 512)
+bench2d(16384, 4096)

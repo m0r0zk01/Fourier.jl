@@ -114,3 +114,25 @@ end
     # arr[block1 + 1, block2 + 2] = arr[block1 + 1, block2 + 1] - 2 * (arr[block1 + 1, block2 + 2] + arr[block1 + 2, block2 + 2])
     # arr[block1 + 2, block2 + 1] = arr[block1 + 1, block2 + 1] - 2 * (arr[block1 + 2, block2 + 1] + arr[block1 + 2, block2 + 2])
     # arr[block1 + 2, block2 + 2] = arr[block1 + 1, block2 + 1] - 2 * (u12 + u21)
+
+    # m, n = size(arr)
+
+    # levels = Int(intlen(m ÷ n))
+    # _bit_reverse_permutation_2d!(arr, levels, 2)
+    # for i in 1:n:m
+    #     @views _fft2_pow2_cooley_square!(arr[i:i+n-1, :])
+    # end
+
+    # len = 2 * n
+    # while len <= m
+    #     half = len >> 1
+    #     roots = transpose(cispi.(-2 * (0:half-1) / len))
+    #     for block in 0:len:m-1
+    #         for i in 1:half
+    #             @. @views arr[block + i + half, :] *= roots[i]
+    #             @. @views arr[block + i, :] += arr[block + i + half, :]
+    #             @. @views arr[block + i + half, :] = arr[block + i, :] - 2 * arr[block + i + half, :]
+    #         end
+    #     end
+    #     len <<= 1
+    # end
