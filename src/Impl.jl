@@ -203,7 +203,7 @@ function _fft2_pow2_cooley_square!(arr::T2)
     roots = Array{ComplexF64}(undef, n)
     while len <= n
         half = len >> 1
-        @fastmath @inbounds @simd for i in 0:half - 1
+        @fastmath @inbounds @simd for i in 0:len - 1
             roots[i + 1] = cispi(-2 * i / len)
         end
         @fastmath @inbounds @simd for block2 in 0:len:n-1
@@ -213,7 +213,7 @@ function _fft2_pow2_cooley_square!(arr::T2)
                         @fastmath @inbounds begin
                             u11 = arr[block1 + i, block2 + j]
                             u21 = arr[block1 + i + half, block2 + j] * roots[i]
-                            u22 = arr[block1 + i + half, block2 + j + half] * roots[i] * roots[j]
+                            u22 = arr[block1 + i + half, block2 + j + half] * roots[((i + j - 2) & (len - 1)) + 1]
                             u12 = arr[block1 + i, block2 + j + half] * roots[j]
 
                             arr[block1 + i, block2 + j] = u11 + u12 + u21 + u22

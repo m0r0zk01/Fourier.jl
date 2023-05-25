@@ -9,7 +9,7 @@ include("Impl.jl")
 """
 Computes Fast Fourier Transform of 1-d array `arr` along given axis `axis`
 
-`arr` length must be power of 2
+`arr`'s length along `axis` must be power of 2
 """
 function fft_pow2(arr, axis=0)
     typeof(arr) <: AbstractArray || error("got non-array")
@@ -23,7 +23,7 @@ Computes Fast Fourier Transform of 2-d array `arr`
 - "default": use default 1-d FFT along rows than columns
 - "cooley": use analog of Cooley-Tuckey algorithm
 
-`arr` length must be power of 2
+`arr` dimensions must be powers of 2
 """
 function fft2_pow2(arr; algorithm="default")
     typeof(arr) <: AbstractArray || error("got non-array")

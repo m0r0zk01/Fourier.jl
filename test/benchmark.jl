@@ -3,6 +3,10 @@ using FFTW
 using Fourier2
 using Test
 
+BenchmarkTools.DEFAULT_PARAMETERS.samples = 10
+BenchmarkTools.DEFAULT_PARAMETERS.seconds = 60
+BenchmarkTools.DEFAULT_PARAMETERS.gcsample = true
+
 function display(msg, res)
     println(msg)
     io = IOBuffer()
@@ -32,8 +36,8 @@ function bench2d(m::Int, n::Int)
     display("Cooley:", bench3)
 end
 
-bench1d(16384)
-bench1d(2^25)
+# bench1d(16384)
+# bench1d(2^25)
 
 bench2d(128, 128)
 bench2d(512, 512)
