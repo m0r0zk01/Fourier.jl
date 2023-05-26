@@ -1,4 +1,4 @@
-# Fourier.jl
+# Fourier2.jl
 
 HSE coursework by Ivan Morozov & Maksim Petlyak
 
