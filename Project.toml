@@ -1,6 +1,6 @@
 name = "Fourier2"
 uuid = "62abd9b6-6057-4f09-b8e7-51b4b9008d60"
-authors = ["Ivan Morozov <m0r0zk01@yandex.ru>", "Maksim Petlyak <maxim.jhgjb@gmail.com>"]
+authors = ["Ivan Morozov <m0r0zk01@yandex.ru>", "Maksim Petlyak <rumazius@mail.ru>"]
 version = "0.1.0"
 
 [deps]
