@@ -20,16 +20,16 @@ jobs:
             julia-arch: x86
 
     steps:
+      - uses: actions/checkout@v3.5.2
+
       - uses: actions/setup-python@v3.1.4
       - name: install python packages
         run: |
           python -m pip install --upgrade pip
-          pip install h5py
-
+          python -m pip install h5py
       - name: generate tests
         run: python test/test_generator.py
 
-      - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.julia-version }}
